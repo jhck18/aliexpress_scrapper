@@ -10,14 +10,17 @@ class ProductInfosController extends Controller
 {
     private $results = array();
     function getDescHtml($url){
-        $client = new Client();
-        $page = $client->request('GET',$url); 
-
-        return $page;
+        $html = file_get_contents($url);
+        return $html;
     }
     public function prodInfos(){
         $res =json_decode(DB::table('my_articles')->get(), true);
         return view('productInfos',compact('res'));
+    }
+
+    public function delete($id){
+        $res = DB::table('my_articles')->where('product_id',$id)->delete();
+        return redirect('/');
     }
 
     public function specificProdDetails($id){
@@ -25,14 +28,12 @@ class ProductInfosController extends Controller
 
         $client = new Client();
         $page = $client->request('GET',$url); 
-        // print_r($page);
        
         $startIndex = strpos($page->text(),'window.runParams = { data:')+27;
         $ini = substr($page->text(),$startIndex);
         $endIndex = strpos($ini,', csrfToken:');
         $ini = substr($ini,0,$endIndex);
         $ini = json_decode($ini);
-        // print_r($ini);
 
         $this->results[$ini->actionModule->productId] = array(
             'product_id' => $ini->actionModule->productId,
@@ -40,13 +41,9 @@ class ProductInfosController extends Controller
             'image' => array($ini->imageModule->imagePathList),
             'price' => $ini->priceModule->maxAmount->value,
             'store' => $ini->storeModule->storeName,
-            // 'description' => $ini->descriptionModule->descriptionUrl,
             'description' => $this->getDescHtml($ini->descriptionModule->descriptionUrl),
         );
-        
-        // dd($this->results);
         $data = $this->results;
-        // dd($data);
         return view('specificProduct',compact('data'));
     }
 

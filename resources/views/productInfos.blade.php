@@ -11,6 +11,8 @@
                         <img src="{{$value['img_url']}}">
                         <p class="card-text">{{ $value['title'] }}</p>
                         <p class="card-price"><b>US ${{ $value['price'] }}</b></p>
+                        <a href="/specificProdDetails/{{ $value['product_id'] }}" class="btn btn-primary">See details</a>
+                        <a href="/delete/{{ $value['product_id'] }}" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>

@@ -23,6 +23,7 @@ Route::get('/',[App\Http\Controllers\ProductInfosController::class,'prodInfos'])
 
 Route::get('specificProduct',[App\Http\Controllers\productInfosController::class,'specificProduct'])->name('specificProduct');
 Route::get('specificProdDetails/{id}', [App\Http\Controllers\productInfosController::class, 'specificProdDetails'])->name('specificProdDetails');
+Route::get('delete/{id}', [App\Http\Controllers\productInfosController::class, 'delete'])->name('delete');
 
 
 Route::post('saveArticle',[App\Http\Controllers\ScraperController::class,'saveArticle'])->name('saveArticle');

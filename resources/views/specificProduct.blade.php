@@ -19,20 +19,7 @@
                 @endforeach
             </div>
          </div>
-         <div class="container">
-            <div class="row">
-                @foreach($data as $key => $value)
-                    <div class="col-md-12 wrapper">
-                        <div class="card text-center mt-4">
-                            <h5 class="card-header">Description</h5>
-                            <div class="card-body">
-                                <p class="card-text">{!! $value['description'] !!}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-         </div>
+         
     </div>
     <div id="carouselExampleControls" class="carousel slide col-lg-4" data-ride="carousel">
     <div class="carousel-inner">
@@ -52,6 +39,25 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="container">
+            <div class="row">
+                @foreach($data as $key => $value)
+                    <div class="col-md-12 wrapper">
+                        <div class="card text-center mt-4">
+                            <h5 class="card-header">Description</h5>
+                            <div class="card-body">
+                                <p class="card-text">{!! $value['description'] !!}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 </div>
 <script>
